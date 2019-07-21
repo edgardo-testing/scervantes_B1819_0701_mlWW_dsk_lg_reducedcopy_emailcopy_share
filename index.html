@@ -1506,7 +1506,8 @@ button.frb-submit.active:hover {
     margin-left: 8px;
 }
 .frb-share__button--icon {
-    width: 14px;
+    width: 17px;
+    height: 17px;
     vertical-align: middle;
 }
 .frb-share__button--label {
@@ -1521,22 +1522,22 @@ button.frb-submit.active:hover {
 .frb-share__button--facebook {
     background: #3C5A99;
 }
-.frb-share__button--facebook .frb-share__button--icon {
+/* .frb-share__button--facebook .frb-share__button--icon {
     width: 15px;
     height: 15px;
-}
+} */
 .frb-share__button--twitter {
     background: #1DA1F2;
 }
-.frb-share__button--twitter .frb-share__button--icon {
+/* .frb-share__button--twitter .frb-share__button--icon {
     height: 17px;
-}
+} */
 .frb-share__button--email {
     background: #727783;
 }
-.frb-share__button--email .frb-share__button--icon {
+/* .frb-share__button--email .frb-share__button--icon {
     height: 11px;
-}
+} */
 /* Start 80% viewport height */
 @media (max-width: 1400px) and (max-height: 800px) {
     .frb-form .frb-methods {
@@ -1601,28 +1602,23 @@ button.frb-submit.active:hover {
 
                             <!-- Facebook share button -->
                             <button class="frb-share__button frb-share__button--facebook">  
-                                <svg class="frb-share__button--icon" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M11.6389 0.75H3.86111C2.14149 0.75 0.75 2.14149 0.75 3.86111V11.6389C0.75 13.3585 2.14149 14.75 3.86111 14.75H8.23307V9.33594H6.41016V7.21528H8.23307V5.65668C8.23307 3.84896 9.33898 2.86458 10.9523 2.86458C11.4961 2.86155 12.0369 2.89193 12.5777 2.94661V4.83637H11.4688C10.5877 4.83637 10.4175 5.24957 10.4175 5.86328V7.21224H12.5169L12.2435 9.3329H10.4054V14.75H11.6389C13.3585 14.75 14.75 13.3585 14.75 11.6389V3.86111C14.75 2.14149 13.3585 0.75 11.6389 0.75Z" fill="white"></path>
+                                <svg class="frb-share__button--icon" width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.3889 1.5H4.61111C2.89149 1.5 1.5 2.89149 1.5 4.61111V12.3889C1.5 14.1085 2.89149 15.5 4.61111 15.5H8.98307V10.0859H7.16016V7.96528H8.98307V6.40668C8.98307 4.59896 10.089 3.61458 11.7023 3.61458C12.2461 3.61155 12.7869 3.64193 13.3277 3.69661V5.58637H12.2188C11.3377 5.58637 11.1675 5.99957 11.1675 6.61328V7.96224H13.2669L12.9935 10.0829H11.1554V15.5H12.3889C14.1085 15.5 15.5 14.1085 15.5 12.3889V4.61111C15.5 2.89149 14.1085 1.5 12.3889 1.5Z" fill="white"></path>
                                 </svg><span class="frb-share__button--label">Share</span>
                             </button>
 
                             <!-- Twitter share button -->
                             <button class="frb-share__button frb-share__button--twitter">
-                                <svg class="frb-share__button--icon" viewBox="0 0 250 204" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M78.6 203.6C172.9 203.6 224.5 125.4 224.5 57.7C224.5 55.5 224.5 53.3 224.4 51.1C234.4 43.9 243.1 34.8 250 24.5C240.8 28.6 230.9 31.3 220.5 32.6C231.1 26.3 239.2 16.2 243.1 4.2C233.2 10.1 222.2 14.3 210.5 16.6C201.1 6.6 187.8 0.400002 173.1 0.400002C144.8 0.400002 121.8 23.4 121.8 51.7C121.8 55.7 122.3 59.6 123.1 63.4C80.5 61.3 42.7 40.8 17.4 9.8C13 17.4 10.5 26.2 10.5 35.6C10.5 53.4 19.6 69.1 33.3 78.3C24.9 78 17 75.7 10.1 71.9C10.1 72.1 10.1 72.3 10.1 72.6C10.1 97.4 27.8 118.2 51.2 122.9C46.9 124.1 42.4 124.7 37.7 124.7C34.4 124.7 31.2 124.4 28.1 123.8C34.6 144.2 53.6 159 76 159.4C58.4 173.2 36.3 181.4 12.3 181.4C8.20001 181.4 4.10001 181.2 0.100006 180.7C22.7 195.1 49.7 203.6 78.6 203.6Z" fill="white"></path>
+                                <svg class="frb-share__button--icon" width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6.39779 14.3838C11.6807 14.3838 14.5715 10.0028 14.5715 6.2101C14.5715 6.08685 14.5715 5.96361 14.5659 5.84036C15.1261 5.43699 15.6135 4.92718 16.0001 4.35015C15.4847 4.57984 14.9301 4.7311 14.3474 4.80393C14.9413 4.45099 15.395 3.88516 15.6135 3.21289C15.0589 3.54342 14.4427 3.77872 13.7872 3.90757C13.2606 3.34734 12.5155 3 11.6919 3C10.1065 3 8.81797 4.28852 8.81797 5.87397C8.81797 6.09806 8.84598 6.31655 8.8908 6.52943C6.50423 6.41179 4.38657 5.26332 2.96919 3.52661C2.72269 3.95239 2.58264 4.44539 2.58264 4.972C2.58264 5.96921 3.09244 6.84876 3.85996 7.36417C3.38937 7.34737 2.94678 7.21851 2.56023 7.00563C2.56023 7.01683 2.56023 7.02804 2.56023 7.04484C2.56023 8.43421 3.55183 9.59948 4.86276 9.86279C4.62187 9.93002 4.36976 9.96363 4.10646 9.96363C3.92158 9.96363 3.74231 9.94682 3.56864 9.91321C3.93279 11.0561 4.99722 11.8852 6.25213 11.9076C5.26613 12.6807 4.02802 13.1401 2.68348 13.1401C2.45378 13.1401 2.22409 13.1289 2 13.1009C3.26611 13.9076 4.77873 14.3838 6.39779 14.3838Z" fill="white"></path>
                                 </svg><span class="frb-share__button--label">Tweet</span>
                             </button>
 
                             <!-- Email share button -->
                             <button class="frb-share__button frb-share__button--email">
-                                <svg class="frb-share__button--icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="11" fill="none" viewBox="0 0 14 11">
-                                    <path fill="url(#a)" d="M0 0h14v11H0z"></path>
-                                    <defs>
-                                        <pattern id="a" width="1" height="1" patternContentUnits="objectBoundingBox">
-                                            <use transform="matrix(.01235 0 0 .01571 0 -.01)" xlink:href="#b"></use>
-                                        </pattern>
-                                        <image id="b" width="81" height="65" xlink:href="data:image/png;base64,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">
-                                    </image></defs>
+                                <svg class="frb-share__button--icon" width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15.4516 4.04503C15.3031 3.44448 14.754 3 14.0979 3H2.90203C2.24934 3 1.70716 3.44109 1.55176 4.03146L8.49996 8.30999L15.4516 4.04503Z" fill="white"></path>
+                                    <path d="M1.5 5.56519V12.626C1.5 13.386 2.12852 14.0001 2.90207 14.0001H14.0979C14.8715 14.0001 15.5 13.386 15.5 12.626V5.58215L8.5 9.87425L1.5 5.56519Z" fill="white"></path>
                                 </svg><span class="frb-share__button--label">Share via email</span>
                             </button>
                         </div>
