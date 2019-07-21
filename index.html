@@ -1501,9 +1501,6 @@ button.frb-submit.active:hover {
     border-radius: 4px;
     display: inline-block;
     border: none;
-    font-size: 11px;
-    font-weight: 600;
-    color: white;
 }
 .frb-share__button + .frb-share__button {
     margin-left: 8px;
@@ -1512,13 +1509,14 @@ button.frb-submit.active:hover {
     width: 14px;
     vertical-align: middle;
 }
-/* .frb-share__button--label {
+.frb-share__button--label {
     font-size: 12px;
     font-weight: 600;
     display: inline-block;
+    line-height: 100%;
     vertical-align: middle;
     color: white;
-} */
+}
 .frb-share__button--facebook {
     background: #3C5A99;
 }
@@ -1607,20 +1605,14 @@ button.frb-submit.active:hover {
                                     <g id="surface314754">
                                         <path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 17 3 L 7 3 C 4.789062 3 3 4.789062 3 7 L 3 17 C 3 19.210938 4.789062 21 7 21 L 12.621094 21 L 12.621094 14.039062 L 10.277344 14.039062 L 10.277344 11.3125 L 12.621094 11.3125 L 12.621094 9.308594 C 12.621094 6.984375 14.042969 5.71875 16.117188 5.71875 C 16.816406 5.714844 17.511719 5.753906 18.207031 5.824219 L 18.207031 8.253906 L 16.78125 8.253906 C 15.648438 8.253906 15.429688 8.785156 15.429688 9.574219 L 15.429688 11.308594 L 18.128906 11.308594 L 17.777344 14.035156 L 15.414062 14.035156 L 15.414062 21 L 17 21 C 19.210938 21 21 19.210938 21 17 L 21 7 C 21 4.789062 19.210938 3 17 3 Z M 17 3 "></path>
                                     </g>
-                                </svg>
-
-
-
-                                Share
+                                </svg><span class="frb-share__button--label">Share</span>
                             </button>
 
                             <!-- Twitter share button -->
                             <button class="frb-share__button frb-share__button--twitter">
                                 <svg class="frb-share__button--icon" viewBox="0 0 250 204" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M78.6 203.6C172.9 203.6 224.5 125.4 224.5 57.7C224.5 55.5 224.5 53.3 224.4 51.1C234.4 43.9 243.1 34.8 250 24.5C240.8 28.6 230.9 31.3 220.5 32.6C231.1 26.3 239.2 16.2 243.1 4.2C233.2 10.1 222.2 14.3 210.5 16.6C201.1 6.6 187.8 0.400002 173.1 0.400002C144.8 0.400002 121.8 23.4 121.8 51.7C121.8 55.7 122.3 59.6 123.1 63.4C80.5 61.3 42.7 40.8 17.4 9.8C13 17.4 10.5 26.2 10.5 35.6C10.5 53.4 19.6 69.1 33.3 78.3C24.9 78 17 75.7 10.1 71.9C10.1 72.1 10.1 72.3 10.1 72.6C10.1 97.4 27.8 118.2 51.2 122.9C46.9 124.1 42.4 124.7 37.7 124.7C34.4 124.7 31.2 124.4 28.1 123.8C34.6 144.2 53.6 159 76 159.4C58.4 173.2 36.3 181.4 12.3 181.4C8.20001 181.4 4.10001 181.2 0.100006 180.7C22.7 195.1 49.7 203.6 78.6 203.6Z" fill="white"></path>
-                                </svg>
-
-                                Tweet
+                                </svg><span class="frb-share__button--label">Tweet</span>
                             </button>
 
                             <!-- Email share button -->
@@ -1633,9 +1625,7 @@ button.frb-submit.active:hover {
                                         </pattern>
                                         <image id="b" width="81" height="65" xlink:href="data:image/png;base64,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">
                                     </image></defs>
-                                </svg>
-
-                                Share via email
+                                </svg><span class="frb-share__button--label">Share via email</span>
                             </button>
                         </div>
                     </div>
