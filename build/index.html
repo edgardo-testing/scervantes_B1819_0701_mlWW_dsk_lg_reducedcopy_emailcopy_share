@@ -1,6 +1,6 @@
 <!-- Large desktop banner. Must be used with "Large banner limit and switch" mixin -->
 
- <!-- CREATED AT: Sun Jul 21 2019 09:05:17 GMT-0500 (Central Daylight Time) -->
+ <!-- CREATED AT: Sun Jul 21 2019 09:20:41 GMT-0500 (Central Daylight Time) -->
 
 <style>
 /* Hide when editing */
@@ -2187,6 +2187,26 @@ $(function() {
             frb.clicked = false;
         }
     });
+
+    // Share with Twitter
+    $('.frb-share__button--twitter').on('click', function (e) {
+        e.preventDefault();
+        var url = encodeURIComponent('http://donate.wikimedia.org ');
+        var text = 'Tweet...';
+
+        window.open('https://twitter.com/share?url=' + url + '&text=' + text + '&hashtags=#gc', '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+    });
+
+    // Share with Facebook
+    $('.frb-share__button--facebook').on('click', function (e) {
+        e.preventDefault();
+
+        var url = 'http://donate.wikimedia.org';
+        var text = 'Share... ' + url;
+
+        window.open('https://www.facebook.com/sharer.php?u=' + url, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=500');
+    });
+
 
     /* Hide banner outside of main namespace (and Main Page, for sites where that isn't in main namespace) */
     if ( mw.config.get('wgNamespaceNumber') > 0 && !mw.config.get('wgIsMainPage') ) {
