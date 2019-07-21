@@ -1,6 +1,6 @@
 <!-- Large desktop banner. Must be used with "Large banner limit and switch" mixin -->
 
- <!-- CREATED AT: Sun Jul 21 2019 10:48:27 GMT-0500 (Central Daylight Time) -->
+ <!-- CREATED AT: Sun Jul 21 2019 11:01:11 GMT-0500 (Central Daylight Time) -->
 
 <style>
 /* Hide when editing */
@@ -1643,7 +1643,7 @@ button.frb-submit.active:hover {
                             </button>
 
                             <!-- Email share button -->
-                            <a title="Share via email" alt="Share via email" href="mailto:?subject=Subject...&amp;body=Make a donation... http://donate.wikimedia.org" class="frb-share__button frb-share__button--email">
+                            <a title="Share via email" alt="Share via email" href="mailto:?subject=Subject...&amp;body=Make a donation... https://donate.wikimedia.org" class="frb-share__button frb-share__button--email">
                                 <svg class="frb-share__button--icon" width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15.4516 4.04503C15.3031 3.44448 14.754 3 14.0979 3H2.90203C2.24934 3 1.70716 3.44109 1.55176 4.03146L8.49996 8.30999L15.4516 4.04503Z" fill="white"></path>
                                     <path d="M1.5 5.56519V12.626C1.5 13.386 2.12852 14.0001 2.90207 14.0001H14.0979C14.8715 14.0001 15.5 13.386 15.5 12.626V5.58215L8.5 9.87425L1.5 5.56519Z" fill="white"></path>
@@ -2216,10 +2216,10 @@ $(function() {
     // Share with Twitter
     $('.frb-share__button--twitter').on('click', function (e) {
         e.preventDefault();
-        var url = encodeURIComponent('http://donate.wikimedia.org ');
+        var url = encodeURIComponent('https://donate.wikimedia.org');
         var text = 'Tweet...';
 
-        console.log(url);
+        console.log('https://twitter.com/intent/tweet?text=' + text + '&url='+ url +'&hashtags=wikimedia,donate');
 
         window.open('https://twitter.com/intent/tweet?text=' + text + '&url='+ url +'&hashtags=wikimedia,donate', '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
     });
@@ -2228,7 +2228,7 @@ $(function() {
     $('.frb-share__button--facebook').on('click', function (e) {
         e.preventDefault();
 
-        var url = 'http://donate.wikimedia.org';
+        var url = 'https://donate.wikimedia.org';
         var text = 'Share... ' + url;
 
         window.open('https://www.facebook.com/sharer.php?u=' + url, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=500');
