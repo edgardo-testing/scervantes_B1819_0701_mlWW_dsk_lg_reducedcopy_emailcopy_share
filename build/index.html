@@ -1,6 +1,6 @@
 <!-- Large desktop banner. Must be used with "Large banner limit and switch" mixin -->
 
- <!-- CREATED AT: Sun Jul 21 2019 09:35:04 GMT-0500 (Central Daylight Time) -->
+ <!-- CREATED AT: Sun Jul 21 2019 10:30:55 GMT-0500 (Central Daylight Time) -->
 
 <style>
 /* Hide when editing */
@@ -1510,6 +1510,9 @@ button.frb-submit.active:hover {
     box-shadow: none !important;
     border-color: none !important;
 }
+.frb-share__button:hover {
+    opacity: 0.9;
+}
 .frb-share__button + .frb-share__button {
     margin-left: 8px;
 }
@@ -1550,6 +1553,17 @@ button.frb-submit.active:hover {
 /* .frb-share__button--email .frb-share__button--icon {
     height: 11px;
 } */
+
+/* Responsive */
+@media (max-width: 1450px) {
+    .frb-message__share {
+        text-align: center;
+    }
+    .frb-share__buttons {
+        margin-left: 0;
+    }
+}
+
 /* Start 80% viewport height */
 @media (max-width: 1400px) and (max-height: 800px) {
     .frb-form .frb-methods {
