@@ -1484,7 +1484,7 @@ button.frb-submit.active:hover {
     color: #d33;
 }
 
-/* Share */
+/* Sharing component */
 .frb-message__share {
     margin-top: 40px;
 }
@@ -1530,26 +1530,16 @@ button.frb-submit.active:hover {
 .frb-share__button--facebook {
     background: #3C5A99;
 }
-/* .frb-share__button--facebook .frb-share__button--icon {
-    width: 15px;
-    height: 15px;
-} */
 .frb-share__button--twitter {
     background: #1DA1F2;
     
 }
-/* .frb-share__button--twitter .frb-share__button--icon {
-    height: 17px;
-} */
 .frb-share__button--email {
     background: #727783;
-    padding-top: 5px; /* Because is a link elemet not a button */
-    padding-bottom: 5px; /* Because is a link elemet not a button */
+    padding-top: 5px; /* Because is a link element not a button */
+    padding-bottom: 5px; /* Because is a link element not a button */
     vertical-align: middle;
 }
-/* .frb-share__button--email .frb-share__button--icon {
-    height: 11px;
-} */
 
 /* Responsive */
 @media (max-width: 1450px) {
@@ -2215,8 +2205,6 @@ $(function() {
         e.preventDefault();
         var url = encodeURIComponent('https://donate.wikimedia.org');
         var text = 'Tweet...';
-
-        console.log('https://twitter.com/intent/tweet?text=' + text + '&url='+ url +'&hashtags=wikimedia,donate');
 
         window.open('https://twitter.com/intent/tweet?text=' + text + '&url='+ url +'&hashtags=wikimedia,donate', '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
     });
