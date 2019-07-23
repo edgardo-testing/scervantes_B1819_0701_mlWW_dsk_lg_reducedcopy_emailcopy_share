@@ -183,11 +183,7 @@ body.rtl .frb-close {
     html[lang="en"] .frb-message { font-size: 19px; }
 }
 
-@media screen and (max-width: 1300px) {
-    .frb-message-inner {
-        padding: 25px 25px 40px;
-    }
-}
+
 @media (min-width: 1300px) {
     .frb-message { font-size: 20px; }
     html[lang="en"] .frb-message { font-size: 21px; }
@@ -274,6 +270,12 @@ body.rtl .frb-message-icon {
 .frb--minimized .frb-message-inner {
     padding: 12px 18px;
     font-size: 14px;
+}
+
+@media (max-width: 1300px) {
+    .frb-message-inner {
+        padding: 25px 25px 40px;
+    }
 }
 
 @media (min-width: 1100px) {
