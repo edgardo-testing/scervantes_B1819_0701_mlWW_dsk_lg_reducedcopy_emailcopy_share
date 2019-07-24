@@ -1,5 +1,5 @@
 <!-- Large desktop banner. Must be used with "Large banner limit and switch" mixin --><html><head>
- <!-- CREATED AT: Wed Jul 24 2019 14:31:59 GMT-0500 (Central Daylight Time) -->
+ <!-- CREATED AT: Wed Jul 24 2019 14:33:06 GMT-0500 (Central Daylight Time) -->
 
 <style>
 /* Hide when editing */
@@ -1601,7 +1601,7 @@ button.frb-submit.active:hover {
 /* End 80% viewport height*/
 
 
-/* Module: Upsell on: Wed Jul 24 2019 14:31:59 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 14:33:06 GMT-0500 (Central Daylight Time) */
 
 /* STEP 2 */
 .frb--minimized, .frb-step2 { display: none; }
@@ -2185,7 +2185,228 @@ $(function() {
     });
 
     // Submit/"Donate now" button
-    
+    // $('.frb-submit').on('click keypress', function(e) {
+        if ( e.which === 13 || e.type === 'click' ) {
+            e.stopPropagation();
+            frb.submitForm(frb.storedOptions);
+        }
+    });
+
+    frb.activateCTA = function() {
+        if ( validAmount && validMethod ) {
+            $('.frb-submit').addClass('active');
+        } else {
+            $('.frb-submit').removeClass('active');
+        }
+    };
+
+    /* --- Nag/minimized banner functionality --- */
+
+    // On Load
+    var onLoad = true;
+    var bannerOuterHeight = $('.frb').outerHeight( true );
+    var stickyHeaderTop = bannerOuterHeight + $('.frb').offset().top + 200;
+
+    // Intercept TOC clicks
+    $('#toc ul > li a').on('click', function(e) {
+        e.preventDefault();
+        var anchor = $(this).attr('href').replace('#','');
+        var offsetTop = parseFloat($("[id='"+anchor+"']").offset().top) - 120;
+        $('body, html').animate({ scrollTop: offsetTop }, 10);
+        window.location.hash = $(this).attr('href');
+    });
+
+    if (window.location.hash) {
+
+        var agent = navigator.userAgent;
+        setTimeout(function() {
+            $('.frb-prevent-page-jump').css({
+                'height' : bannerOuterHeight + 'px',
+                'display': 'block'
+            });
+        }, 150);
+        var hash = decodeURI(window.location.hash).replace('#','');
+        hash = $("[id='"+hash+"']");
+
+        var offsetTop = hash.offset().top - 120;
+        offsetTop = (agent.indexOf('Chrome') > -1 || agent.indexOf('Firefox') > -1 || agent.indexOf('MSIE') > -1) ? offsetTop : offsetTop + bannerOuterHeight;
+        offsetTop = (agent.indexOf('Edge') > -1) ? offsetTop + bannerOuterHeight : offsetTop;
+
+        $('body, html').animate({ scrollTop: offsetTop }, 100, function() {
+            onLoad = false;
+        });
+
+    } else {
+        onLoad = false;
+    }
+
+    $(window).on('resize', function() {
+        bannerOuterHeight = $('.frb').outerHeight( true );
+        stickyHeaderTop = bannerOuterHeight + $('.frb').offset().top + 200;
+    });
+
+    function minimizeScrollFunction() {
+        if( $(window).scrollTop() > stickyHeaderTop ) {
+
+            $('.frb-prevent-page-jump').css({
+                'height'  : bannerOuterHeight + 'px'
+            });
+            if (!onLoad) {
+                // No onload, show jump
+                $('.frb-prevent-page-jump').show();
+            }
+
+            $('.frb').addClass('frb--minimized');
+            $('.frb').removeClass('frb--in-article');
+        } else {
+            $('.frb').addClass('frb--in-article');
+            $('.frb-prevent-page-jump').css('display', 'none');
+            $('.frb').removeClass('frb--minimized frb-rml-displayed');
+        }
+    }
+
+    var scrollPos;
+    frb.clicked = false;
+    $(window).on('load scroll resize', function() {
+        scrollPos = $(window).scrollTop();
+
+        // Keep frb minimized until clicked or the user scrolls to the top of the page.
+        if ( frb.clicked === false ) {
+            minimizeScrollFunction();
+        }
+        // Restore default state
+        if ( scrollPos === 0 ) {
+            $('.frb').addClass('frb--in-article');
+            $('.frb').removeClass('frb--minimized frb--fixed frb-rml-displayed');
+            $('.frb-prevent-page-jump').css('display', 'none');
+            frb.clicked = false;
+        }
+    });
+
+    frb.clickedYes = function(e) {
+        if ( $('.frb').hasClass('frb--minimized') ) {
+            $('.frb').addClass('frb--fixed');
+            $('.frb').removeClass('frb--minimized frb--in-article frb-rml-displayed');
+            frb.clicked = true;
+            frb.extraData.clickedNag = 1;
+        }
+    };
+
+    frb.clickedNo = function(e) {
+        e.stopPropagation();
+        $('.frb').addClass('frb-rml-displayed');
+        frb.removeMinimizedListener();
+    };
+
+    frb.addMinimizedListener = function(){
+        $('body').on('click keypress', '.frb--minimized', function(e){
+            if (e.which === 13 || e.type === 'click') {
+                frb.clickedYes(e);
+            }
+        });
+    };
+    frb.addMinimizedListener(); // Enable by default
+
+    frb.removeMinimizedListener = function(){
+        $('body').off('click keypress', '.frb--minimized');
+    };
+
+    // The nag’s yes/no functionality
+    $('#yes-button').on('click keypress', function(e) {
+        if (e.which === 13 || e.type === 'click') {
+            frb.clickedYes(e);
+        }
+    });
+
+    $('#no-button').on('click keypress', function(e) {
+        if (e.which === 13 || e.type === 'click') {
+            frb.clickedNo(e);
+        }
+    });
+
+    $('.close-rml').on('click keypress', function(e) {
+        if (e.which === 13 || e.type === 'click') {
+            $('.frb').removeClass('frb-rml-displayed');
+            frb.clicked = false;
+        }
+    });
+
+    // Share with Twitter
+    $('.frb-share__button--twitter').on('click', function (e) {
+        e.preventDefault();
+        var url = encodeURIComponent('https://donate.wikimedia.org');
+        var text = 'Tweet...';
+
+        window.open('https://twitter.com/intent/tweet?text=' + text + '&url='+ url +'&hashtags=wikimedia,donate', '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+    });
+
+    // Share with Facebook
+    $('.frb-share__button--facebook').on('click', function (e) {
+        e.preventDefault();
+
+        var url = 'https://donate.wikimedia.org';
+        var text = 'Share... ' + url;
+
+        window.open('https://www.facebook.com/sharer.php?u=' + url, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=500');
+    });
+
+
+    /* Hide banner outside of main namespace (and Main Page, for sites where that isn't in main namespace) */
+    if ( mw.config.get('wgNamespaceNumber') > 0 && !mw.config.get('wgIsMainPage') ) {
+        mw.centralNotice.bannerData.hideResult = true;
+        mw.centralNotice.bannerData.hideReason = 'namespace';
+    }
+    /* Hide banner on mobile site, in case wrong device settings were chosen */
+    if ( mw.config.get('skin') === 'minerva' ) {
+        mw.centralNotice.bannerData.hideResult = true;
+        mw.centralNotice.bannerData.hideReason = 'other';
+    }
+
+    if (!mw.centralNotice.bannerData.hideResult) {
+        frb.show();
+    }
+
+});
+
+
+ // Upsell module: Go to the second step of the form
+  $('#continue-btn').on('click', function(e) {
+      e.preventDefault();
+      var status = {amount: false, method: false};
+
+      // Validate amount
+      if( frb.validateAmount() ){
+          status.amount = true;
+      }
+
+      // Validate method
+      if($('input[name="frb-methods"]:checked').length === 1){
+          status.method = true;
+      } else {
+          $('.frb-methods').addClass('frb-haserror');
+          $('.frb-error-method').show();
+      }
+
+      if(status.amount === true && status.method === true){
+          if(!$('.frb-optin').is(':visible')) {
+              $('.frb-optin').slideDown();
+          }
+
+          // Only do step 2 if gift is one-time and payment method supports monthly
+          if( frb.getRecurring(document.getElementById('frb-form')) || $('#frb-frequency-monthly').prop('disabled') ) {
+              frb.submitForm(frb.storedOptions);
+          } else {
+              $('.frb-rml-link').fadeOut();
+              $('.frb-step1').fadeToggle(function(){
+                  $('.frb-step2').fadeToggle();
+                  $('.frb-rml-form').hide();
+                  $('.frb-upsell').show().css('display', 'block');
+                  $('.close-optin').show();
+                  $('.frb-close').hide();
+              });
+          }
+      }
+  });
     
 
 </script>
