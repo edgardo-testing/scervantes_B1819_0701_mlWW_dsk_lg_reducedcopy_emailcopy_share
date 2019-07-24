@@ -1,5 +1,5 @@
 <!-- Large desktop banner. Must be used with "Large banner limit and switch" mixin --><html><head>
- <!-- CREATED AT: Wed Jul 24 2019 18:55:52 GMT-0500 (Central Daylight Time) -->
+ <!-- CREATED AT: Wed Jul 24 2019 18:57:18 GMT-0500 (Central Daylight Time) -->
 
 <style>
 /* Hide when editing */
@@ -1601,7 +1601,7 @@ button.frb-submit.active:hover {
 /* End 80% viewport height*/
 
 
-/* Module: Upsell on: Wed Jul 24 2019 18:55:52 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 18:57:18 GMT-0500 (Central Daylight Time) */
 
 /* STEP 2 */
 .frb--minimized, .frb-step2 { display: none; }
@@ -2101,97 +2101,97 @@ frb.rml = {
 
 
 
-// Function: submitMonthlyForm
-frb.submitMonthlyForm = function(options, isEndowment) {
+      // Function: submitMonthlyForm
+    frb.submitMonthlyForm = function(options, isEndowment) {
 
-    var uri = new mw.Uri('https://payments.wikimedia.org/index.php/Special:GatewayFormChooser');
-    var params = {};
+        var uri = new mw.Uri('https://payments.wikimedia.org/index.php/Special:GatewayFormChooser');
+        var params = {};
 
-    /* Form selection data */
-    params.payment_method = options.method;
-    if ( options.submethod ) {
-        params.payment_submethod = options.submethod;
-    }
-    if ( options.gateway ) {
-        params.gateway = options.gateway;
-    }
-    if ( options.ffname ) {
-        params.ffname = options.ffname;
-    }
-    if ( options.variant ) {
-        params.variant = options.variant;
-    }
-    params.recurring = frb.getRecurring();
+        /* Form selection data */
+        params.payment_method = options.method;
+        if ( options.submethod ) {
+            params.payment_submethod = options.submethod;
+        }
+        if ( options.gateway ) {
+            params.gateway = options.gateway;
+        }
+        if ( options.ffname ) {
+            params.ffname = options.ffname;
+        }
+        if ( options.variant ) {
+            params.variant = options.variant;
+        }
+        params.recurring = frb.getRecurring();
 
-    params.currency_code = frb.getCurrency(mw.centralNotice.data.country) || 'USD';
+        params.currency_code = frb.getCurrency(mw.centralNotice.data.country) || 'USD';
 
-    params.uselang = mw.centralNotice.data.uselang || 'en';
-    params.country = mw.centralNotice.data.country || 'XX';
+        params.uselang = mw.centralNotice.data.uselang || 'en';
+        params.country = mw.centralNotice.data.country || 'XX';
 
-    if ( params.uselang === 'pt' && params.country === 'BR' ) {
-        params.uselang = 'pt-br';
-    }
-    if ( params.uselang === 'es' &&
-        ( params.country === 'AR' || params.country === 'CL' ||
-          params.country === 'CO' || params.country === 'MX' ||
-          params.country === 'PE' || params.country === 'UY' )
-    ) {
-        params.uselang = 'es-419';
-    }
+        if ( params.uselang === 'pt' && params.country === 'BR' ) {
+            params.uselang = 'pt-br';
+        }
+        if ( params.uselang === 'es' &&
+            ( params.country === 'AR' || params.country === 'CL' ||
+              params.country === 'CO' || params.country === 'MX' ||
+              params.country === 'PE' || params.country === 'UY' )
+        ) {
+            params.uselang = 'es-419';
+        }
 
-    /* Adyen override. frb.ccAdyenCountries is defined in LocalizeJS-2017.js */
-    if ( params.payment_method === 'cc' && frb.ccAdyenCountries.indexOf( params.country ) !== -1 ) {
-        params.gateway = 'adyen';
-    }
+        /* Adyen override. frb.ccAdyenCountries is defined in LocalizeJS-2017.js */
+        if ( params.payment_method === 'cc' && frb.ccAdyenCountries.indexOf( params.country ) !== -1 ) {
+            params.gateway = 'adyen';
+        }
 
-    /* Amount */
-    var amount = frb.getMonthlyAmount();
-    if ( $('#frb-ptf-checkbox').prop('checked') ) {
-        frb.extraData.ptf = 1;
-    }
-    params.amount = amount;
+        /* Amount */
+        var amount = frb.getMonthlyAmount();
+        if ( $('#frb-ptf-checkbox').prop('checked') ) {
+            frb.extraData.ptf = 1;
+        }
+        params.amount = amount;
 
-    /* Email optin */
-    if ( $('input[name="opt_in"]').length > 0 ) {
-        var opt_inValue = $('input[name="opt_in"]:checked').val();
-        params.opt_in  = opt_inValue; // frb.validateForm() already checked it's 1 or 0
-        params.variant = 'emailExplain'; // Show message about receipt on cc form
-    }
+        /* Email optin */
+        if ( $('input[name="opt_in"]').length > 0 ) {
+            var opt_inValue = $('input[name="opt_in"]:checked').val();
+            params.opt_in  = opt_inValue; // frb.validateForm() already checked it's 1 or 0
+            params.variant = 'emailExplain'; // Show message about receipt on cc form
+        }
 
-    /* Tracking info */
-    if ( isEndowment ) {
-        params.utm_medium = 'endowment';
-    } else {
-        params.utm_medium = 'sitenotice';
-    }
-    params.utm_campaign = mw.centralNotice.data.campaign || 'test';
-    params.utm_source   = frb.buildUtmSource(params);
+        /* Tracking info */
+        if ( isEndowment ) {
+            params.utm_medium = 'endowment';
+        } else {
+            params.utm_medium = 'sitenotice';
+        }
+        params.utm_campaign = mw.centralNotice.data.campaign || 'test';
+        params.utm_source   = frb.buildUtmSource(params);
 
-    frb.extraData.vw = window.innerWidth;
-    frb.extraData.vh = window.innerHeight;
-    frb.extraData.time = Math.round( (Date.now() - frb.loadedTime)/1000 );
+        frb.extraData.vw = window.innerWidth;
+        frb.extraData.vh = window.innerHeight;
+        frb.extraData.time = Math.round( (Date.now() - frb.loadedTime)/1000 );
 
-    if ( !$.isEmptyObject( frb.extraData ) ) {
-        params.utm_key = frb.buildUtmKey( frb.extraData );
-    }
+        if ( !$.isEmptyObject( frb.extraData ) ) {
+            params.utm_key = frb.buildUtmKey( frb.extraData );
+        }
 
-    /* Link to Banner History if enabled */
-    var mixins = mw.centralNotice.getDataProperty( 'mixins' );
-    if ( mixins && mixins.bannerHistoryLogger ) {
-        params.bannerhistlog = mw.centralNotice.bannerHistoryLogger.id;
-    }
+        /* Link to Banner History if enabled */
+        var mixins = mw.centralNotice.getDataProperty( 'mixins' );
+        if ( mixins && mixins.bannerHistoryLogger ) {
+            params.bannerhistlog = mw.centralNotice.bannerHistoryLogger.id;
+        }
 
-    uri.extend(params);
+        uri.extend(params);
 
-    if ( mixins && mixins.bannerHistoryLogger ) {
-        mw.centralNotice.bannerHistoryLogger.ensureLogSent().always(function() {
+        if ( mixins && mixins.bannerHistoryLogger ) {
+            mw.centralNotice.bannerHistoryLogger.ensureLogSent().always(function() {
+                window.location.href = uri.toString();
+            });
+        } else {
             window.location.href = uri.toString();
-        });
-    } else {
-        window.location.href = uri.toString();
-    }
+        }
 
-};
+    };
 
 
 $(function() {
@@ -2369,16 +2369,9 @@ $(function() {
     $(window).on('load scroll resize', function() {
         scrollPos = $(window).scrollTop();
 
-        // Keep frb minimized until clicked or the user scrolls to the top of the page.
-        if ( frb.clicked === false ) {
-            minimizeScrollFunction();
-        }
-        // Restore default state
-        if ( scrollPos === 0 ) {
-            $('.frb').addClass('frb--in-article');
-            $('.frb').removeClass('frb--minimized frb--fixed f
+        // Keep frb minimized until clicked or t
 
-/* Module: Upsell on: Wed Jul 24 2019 18:55:52 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 18:57:18 GMT-0500 (Central Daylight Time) */
 
 // Event: Go back to Step 1
 $('body').on('click', '.close-optin', function(e) {
@@ -2492,10 +2485,17 @@ $(document).on('click', '#continue-btn', function(e) {
     }
 });
 
-/* Module: Upsell on: Wed Jul 24 2019 18:55:52 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 18:57:18 GMT-0500 (Central Daylight Time) */
 
 
-rb-rml-displayed');
+he user scrolls to the top of the page.
+        if ( frb.clicked === false ) {
+            minimizeScrollFunction();
+        }
+        // Restore default state
+        if ( scrollPos === 0 ) {
+            $('.frb').addClass('frb--in-article');
+            $('.frb').removeClass('frb--minimized frb--fixed frb-rml-displayed');
             $('.frb-prevent-page-jump').css('display', 'none');
             frb.clicked = false;
         }
