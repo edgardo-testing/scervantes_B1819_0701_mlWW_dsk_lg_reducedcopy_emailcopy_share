@@ -1,5 +1,5 @@
 <!-- Large desktop banner. Must be used with "Large banner limit and switch" mixin --><html><head>
- <!-- CREATED AT: Wed Jul 24 2019 17:16:15 GMT-0500 (Central Daylight Time) -->
+ <!-- CREATED AT: Wed Jul 24 2019 17:18:43 GMT-0500 (Central Daylight Time) -->
 
 <style>
 /* Hide when editing */
@@ -1601,7 +1601,7 @@ button.frb-submit.active:hover {
 /* End 80% viewport height*/
 
 
-/* Module: Upsell on: Wed Jul 24 2019 17:16:15 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 17:18:43 GMT-0500 (Central Daylight Time) */
 
 /* STEP 2 */
 .frb--minimized, .frb-step2 { display: none; }
@@ -2185,12 +2185,7 @@ $(function() {
     });
 
     // Submit/"Donate now" button
-    $('.frb-submit').on('click keypress', function(e) {
-        if ( e.which === 13 || e.type === 'click' ) {
-            e.stopPropagation();
-            frb.submitForm(frb.storedOptions);
-        }
-    });
+    
 
     frb.activateCTA = function() {
         if ( validAmount && validMethod ) {
