@@ -1,5 +1,5 @@
 <!-- Large desktop banner. Must be used with "Large banner limit and switch" mixin --><html><head>
- <!-- CREATED AT: Wed Jul 24 2019 18:51:31 GMT-0500 (Central Daylight Time) -->
+ <!-- CREATED AT: Wed Jul 24 2019 18:53:56 GMT-0500 (Central Daylight Time) -->
 
 <style>
 /* Hide when editing */
@@ -1601,7 +1601,7 @@ button.frb-submit.active:hover {
 /* End 80% viewport height*/
 
 
-/* Module: Upsell on: Wed Jul 24 2019 18:51:30 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 18:53:56 GMT-0500 (Central Daylight Time) */
 
 /* STEP 2 */
 .frb--minimized, .frb-step2 { display: none; }
@@ -2101,9 +2101,9 @@ frb.rml = {
 
 
 
-/* Module: Upsell on: Wed Jul 24 2019 18:51:30 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 18:53:56 GMT-0500 (Central Daylight Time) */
 
-// Function: submitMonthlyForm
+// Event: Go back to Step 1
 frb.submitMonthlyForm = function(options, isEndowment) {
 
     var uri = new mw.Uri('https://payments.wikimedia.org/index.php/Special:GatewayFormChooser');
@@ -2194,8 +2194,6 @@ frb.submitMonthlyForm = function(options, isEndowment) {
     }
 
 };
-/* Module: Upsell on: Wed Jul 24 2019 18:51:30 GMT-0500 (Central Daylight Time) */
-
 
 
 $(function() {
@@ -2377,9 +2375,11 @@ $(function() {
         if ( frb.clicked === false ) {
             minimizeScrollFunction();
         }
-        // 
+        // Restore default state
+        if ( scrollPos === 0 ) {
+            $('.frb').addClass('
 
-/* Module: Upsell on: Wed Jul 24 2019 18:51:30 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 18:53:56 GMT-0500 (Central Daylight Time) */
 
 // Event: Go back to Step 1
 $('body').on('click', '.close-optin', function(e) {
@@ -2456,7 +2456,6 @@ $('#donate-monthly').on('click keypress', function(e) {
 
  // Event: Go to the second step of the form
 $(document).on('click', '#continue-btn', function(e) {
-  console.log('continue-btn')
     e.preventDefault();
     var status = {amount: false, method: false};
 
@@ -2464,8 +2463,6 @@ $(document).on('click', '#continue-btn', function(e) {
     if( frb.validateAmount() ){
         status.amount = true;
     }
-
-    console.log('after validate amount')
 
     // Validate method
     if($('input[name="frb-methods"]:checked').length === 1){
@@ -2496,12 +2493,10 @@ $(document).on('click', '#continue-btn', function(e) {
     }
 });
 
-/* Module: Upsell on: Wed Jul 24 2019 18:51:30 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 18:53:56 GMT-0500 (Central Daylight Time) */
 
 
-Restore default state
-        if ( scrollPos === 0 ) {
-            $('.frb').addClass('frb--in-article');
+frb--in-article');
             $('.frb').removeClass('frb--minimized frb--fixed frb-rml-displayed');
             $('.frb-prevent-page-jump').css('display', 'none');
             frb.clicked = false;
