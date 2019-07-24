@@ -1,5 +1,5 @@
 <!-- Large desktop banner. Must be used with "Large banner limit and switch" mixin --><html><head>
- <!-- CREATED AT: Wed Jul 24 2019 18:50:07 GMT-0500 (Central Daylight Time) -->
+ <!-- CREATED AT: Wed Jul 24 2019 18:51:31 GMT-0500 (Central Daylight Time) -->
 
 <style>
 /* Hide when editing */
@@ -1601,7 +1601,7 @@ button.frb-submit.active:hover {
 /* End 80% viewport height*/
 
 
-/* Module: Upsell on: Wed Jul 24 2019 18:50:07 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 18:51:30 GMT-0500 (Central Daylight Time) */
 
 /* STEP 2 */
 .frb--minimized, .frb-step2 { display: none; }
@@ -2101,6 +2101,9 @@ frb.rml = {
 
 
 
+/* Module: Upsell on: Wed Jul 24 2019 18:51:30 GMT-0500 (Central Daylight Time) */
+
+// Function: submitMonthlyForm
 frb.submitMonthlyForm = function(options, isEndowment) {
 
     var uri = new mw.Uri('https://payments.wikimedia.org/index.php/Special:GatewayFormChooser');
@@ -2191,6 +2194,8 @@ frb.submitMonthlyForm = function(options, isEndowment) {
     }
 
 };
+/* Module: Upsell on: Wed Jul 24 2019 18:51:30 GMT-0500 (Central Daylight Time) */
+
 
 
 $(function() {
@@ -2372,13 +2377,9 @@ $(function() {
         if ( frb.clicked === false ) {
             minimizeScrollFunction();
         }
-        // Restore default state
-        if ( scrollPos === 0 ) {
-            $('.frb').addClass('frb--in-article');
-            $('.frb').removeClass('frb--minimized frb--fixed frb-rml-displayed');
-           
+        // 
 
-/* Module: Upsell on: Wed Jul 24 2019 18:50:07 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 18:51:30 GMT-0500 (Central Daylight Time) */
 
 // Event: Go back to Step 1
 $('body').on('click', '.close-optin', function(e) {
@@ -2495,10 +2496,14 @@ $(document).on('click', '#continue-btn', function(e) {
     }
 });
 
-/* Module: Upsell on: Wed Jul 24 2019 18:50:07 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 18:51:30 GMT-0500 (Central Daylight Time) */
 
 
- $('.frb-prevent-page-jump').css('display', 'none');
+Restore default state
+        if ( scrollPos === 0 ) {
+            $('.frb').addClass('frb--in-article');
+            $('.frb').removeClass('frb--minimized frb--fixed frb-rml-displayed');
+            $('.frb-prevent-page-jump').css('display', 'none');
             frb.clicked = false;
         }
     });
