@@ -1,5 +1,5 @@
 <!-- Large desktop banner. Must be used with "Large banner limit and switch" mixin --><html><head>
- <!-- CREATED AT: Thu Jul 25 2019 07:48:12 GMT-0500 (Central Daylight Time) -->
+ <!-- CREATED AT: Thu Jul 25 2019 07:56:14 GMT-0500 (Central Daylight Time) -->
 
 <style>
 /* Hide when editing */
@@ -1601,7 +1601,7 @@ button.frb-submit.active:hover {
 /* End 80% viewport height*/
 
 
-/* Module: Upsell on: Thu Jul 25 2019 07:48:12 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Thu Jul 25 2019 07:56:03 GMT-0500 (Central Daylight Time) */
 
 .frb-submit {
     width: 100%;
@@ -1708,6 +1708,76 @@ button.frb-submit.active:hover {
 }
 
 /* Module: Upsell */
+    
+
+
+
+/* Module: Shaking effect height on: Thu Jul 25 2019 07:56:14 GMT-0500 (Central Daylight Time) */
+.shake {
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+}
+
+/* Keyframes shake moz */
+@-moz-keyframes shake {
+    10%, 90% {
+        -moz-transform: translate3d(-1px, 0, 0);
+    }
+
+    20%, 80% {
+        -moz-transform: translate3d(2px, 0, 0);
+    }
+
+    30%, 50%, 70% {
+        -moz-transform: translate3d(-4px, 0, 0);
+    }
+
+    40%, 60% {
+        -moz-transform: translate3d(4px, 0, 0);
+    }
+}
+
+/* Keyframes shake webkit */
+@-webkit-keyframes shake {
+    10%, 90% {
+        -webkit-transform: translate3d(-1px, 0, 0);
+    }
+
+    20%, 80% {
+        -webkit-transform: translate3d(2px, 0, 0);
+    }
+
+    30%, 50%, 70% {
+        -webkit-transform: translate3d(-4px, 0, 0);
+    }
+
+    40%, 60% {
+        -webkit-transform: translate3d(4px, 0, 0);
+    }
+}
+
+/* Keyframes shake moz */
+@keyframes shake {
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+/* Module: Shaking effect */
     
 
 </style>
@@ -2016,7 +2086,9 @@ button.frb-submit.active:hover {
 
 <script>
 
-    // {# 'upsell' #}
+    // // {# 'upsell' #}
+    // // {# 'shakingEffect' #}
+
 var frb = frb || {};
 
 frb.show = function() {
@@ -2124,7 +2196,7 @@ frb.rml = {
 
 
 
-      /* Module: Upsell on: Thu Jul 25 2019 07:48:12 GMT-0500 (Central Daylight Time) */
+      /* Module: Upsell on: Thu Jul 25 2019 07:56:03 GMT-0500 (Central Daylight Time) */
 
       frb.submitMonthlyForm = function (options, isEndowment) {
 
@@ -2216,10 +2288,38 @@ frb.rml = {
           }
 
       };
-      /* Module: Upsell on: Thu Jul 25 2019 07:48:12 GMT-0500 (Central Daylight Time) */
+      /* Module: Upsell on: Thu Jul 25 2019 07:56:03 GMT-0500 (Central Daylight Time) */
     
 
 $(function() {
+	
+    // DOM event of shaking effect: Handle .frb-submit of first step
+    $('#continue-btn').on('click', function() {
+      // Amounts validation
+      if (!frb.validateAmount() ) {
+        $('.frb-amounts').addClass('shake');
+        setTimeout(function() {
+            $('.frb-amounts').removeClass('shake');
+        }, 1000);
+      }
+
+      // Optin validation
+      if($('.frb-error-optin').is(':visible')) {
+        $('.frb-optin').addClass('shake');
+        setTimeout(function() {
+            $('.frb-optin').removeClass('shake');
+        }, 1000);
+      }
+
+      // Methods validation
+      if ($('input[name="frb-methods"]:checked').length !== 1) {
+        $('.frb-methods').addClass('shake');
+        setTimeout(function() {
+            $('.frb-methods').removeClass('shake');
+        }, 1000);
+      }
+    })
+    
     var language = mw.centralNotice.data.uselang;
     var country  = mw.centralNotice.data.country;
     var currency = frb.getCurrency(country);
@@ -2253,7 +2353,7 @@ $(function() {
 
     
 
-      /* Module: Upsell on: Thu Jul 25 2019 07:48:12 GMT-0500 (Central Daylight Time) */
+      /* Module: Upsell on: Thu Jul 25 2019 07:56:03 GMT-0500 (Central Daylight Time) */
       $('.frb-amounts').on('input change', function(e) {
         var target = $(e.target);
         if ( target.attr('id') !== 'input_amount_other' ) {
@@ -2325,7 +2425,7 @@ $(function() {
 
     
 
-      /* Module: Upsell on: Thu Jul 25 2019 07:48:12 GMT-0500 (Central Daylight Time) */
+      /* Module: Upsell on: Thu Jul 25 2019 07:56:03 GMT-0500 (Central Daylight Time) */
       frb.activateCTA = function () {
           console.log('frb.activateCTA')
           console.log(validAmount)
@@ -2380,7 +2480,7 @@ $(function() {
       };
 
       
-      /* Module: Upsell on: Thu Jul 25 2019 07:48:12 GMT-0500 (Central Daylight Time) */
+      /* Module: Upsell on: Thu Jul 25 2019 07:56:03 GMT-0500 (Central Daylight Time) */
 
       // Event: Go back to Step 1
       $('body').on('click', '.close-optin', function(e) {
@@ -2565,7 +2665,7 @@ $(function() {
           }
       });
 
-      /* Module: Upsell on: Thu Jul 25 2019 07:48:12 GMT-0500 (Central Daylight Time) */
+      /* Module: Upsell on: Thu Jul 25 2019 07:56:03 GMT-0500 (Central Daylight Time) */
     
     
 
