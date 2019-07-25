@@ -1973,8 +1973,8 @@ $(function() {
     var language = mw.centralNotice.data.uselang;
     var country  = mw.centralNotice.data.country;
     var currency = frb.getCurrency(country);
-    var validAmount;
-    var validMethod;
+    var validAmount = 0;
+    var validMethod = 0;
 
     mw.loader.using(['mediawiki.util']).then(function() {
         frb.rml.init();
@@ -2010,6 +2010,8 @@ $(function() {
                 validAmount = 0;
             }
         }
+        console.log('valid amount frb-amounts' + validAmount)
+        
         frb.updateFeeDisplay();
         frb.activateCTA();
     });
