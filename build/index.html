@@ -1,5 +1,5 @@
 <!-- Large desktop banner. Must be used with "Large banner limit and switch" mixin --><html><head>
- <!-- CREATED AT: Thu Jul 25 2019 05:24:53 GMT-0500 (Central Daylight Time) -->
+ <!-- CREATED AT: Thu Jul 25 2019 05:26:31 GMT-0500 (Central Daylight Time) -->
 
 <style>
 /* Hide when editing */
@@ -1601,7 +1601,7 @@ button.frb-submit.active:hover {
 /* End 80% viewport height*/
 
 
-/* Module: Upsell on: Thu Jul 25 2019 05:24:53 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Thu Jul 25 2019 05:26:31 GMT-0500 (Central Daylight Time) */
 
 .frb-submit {
     width: 100%;
@@ -1925,7 +1925,7 @@ button.frb-submit.active:hover {
                 </fieldset>
 
 <fieldset class="frb-continue">
-    <button class="frb-submit" id="continue-btn">
+    <button class="frb-submit active" id="continue-btn">
        <span class="frb-submit-txt">Continue</span>
     </button>
 </fieldset>
@@ -1945,10 +1945,10 @@ button.frb-submit.active:hover {
        <p class="frb-upsell-color">Monthly support is the best way to ensure that Wikipedia keeps thriving.</p>
   </div>
   <div class="frb-monthly-buttons">
-      <button id="frb-monthly-donate-yes" class="frb-submit" onclick="return false;">
+      <button id="frb-monthly-donate-yes" class="frb-submit active" onclick="return false;">
           <span class="frb-submit-txt">Yes, I'll donate <span class="frb-upsell-ask"></span> each month</span>
       </button>
-      <button id="frb-monthly-donate-no" class="frb-submit" onclick="return false;">
+      <button id="frb-monthly-donate-no" class="frb-submit active" onclick="return false;">
           <span class="frb-submit-txt">No, thanks! I'll make a one-time donation of <span class="frb-ptf-total"></span></span>
       </button>
   </div>
@@ -2124,7 +2124,7 @@ frb.rml = {
 
 
 
-/* Module: Upsell on: Thu Jul 25 2019 05:24:53 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Thu Jul 25 2019 05:26:31 GMT-0500 (Central Daylight Time) */
 
 frb.submitMonthlyForm = function (options, isEndowment) {
 
@@ -2216,7 +2216,7 @@ frb.submitMonthlyForm = function (options, isEndowment) {
     }
 
 };
-/* Module: Upsell on: Thu Jul 25 2019 05:24:53 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Thu Jul 25 2019 05:26:31 GMT-0500 (Central Daylight Time) */
 
 
 
@@ -2318,10 +2318,10 @@ $(function() {
     
 
     
-/* Module: Upsell on: Thu Jul 25 2019 05:24:53 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Thu Jul 25 2019 05:26:31 GMT-0500 (Central Daylight Time) */
 
 
-/* Module: Upsell on: Thu Jul 25 2019 05:24:53 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Thu Jul 25 2019 05:26:31 GMT-0500 (Central Daylight Time) */
 
 frb.getMonthlyAmount = function() {
     var form = document.getElementById('frb-form');
@@ -2364,8 +2364,6 @@ frb.validateMonthlyAmount = function() {
         return true;
     }
 };
-/* Module: Upsell on: Thu Jul 25 2019 05:24:53 GMT-0500 (Central Daylight Time) */
-
 
 
 frb.activateCTA = function () {
@@ -2375,8 +2373,6 @@ frb.activateCTA = function () {
         $('.frb-submit:not(#continue-btn)').removeClass('active');
     }
 };
-/* Module: Upsell on: Thu Jul 25 2019 05:24:53 GMT-0500 (Central Daylight Time) */
-
 
 
     /* --- Nag/minimized banner functionality --- */
@@ -2548,7 +2544,7 @@ frb.activateCTA = function () {
 });
 
 
-/* Module: Upsell on: Thu Jul 25 2019 05:24:53 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Thu Jul 25 2019 05:26:31 GMT-0500 (Central Daylight Time) */
 
 // Event: Go back to Step 1
 $('body').on('click', '.close-optin', function(e) {
@@ -2729,7 +2725,7 @@ $('body').on('click', '[name="monthly"]', function(){
     }
 });
 
-/* Module: Upsell on: Thu Jul 25 2019 05:24:53 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Thu Jul 25 2019 05:26:31 GMT-0500 (Central Daylight Time) */
 
 
 </script>
