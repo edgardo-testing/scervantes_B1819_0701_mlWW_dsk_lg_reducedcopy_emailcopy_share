@@ -1,5 +1,5 @@
 <!-- Large desktop banner. Must be used with "Large banner limit and switch" mixin --><html><head>
- <!-- CREATED AT: Wed Jul 24 2019 19:08:27 GMT-0500 (Central Daylight Time) -->
+ <!-- CREATED AT: Wed Jul 24 2019 19:38:33 GMT-0500 (Central Daylight Time) -->
 
 <style>
 /* Hide when editing */
@@ -1601,7 +1601,7 @@ button.frb-submit.active:hover {
 /* End 80% viewport height*/
 
 
-/* Module: Upsell on: Wed Jul 24 2019 19:08:27 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 19:38:33 GMT-0500 (Central Daylight Time) */
 
 /* STEP 2 */
 .frb--minimized, .frb-step2 { display: none; }
@@ -2142,6 +2142,51 @@ frb.rml = {
               return true;
           }
       };
+    
+
+
+
+      frb.getMonthlyAmount = function() {
+          var form = document.getElementById('frb-form');
+          var amount = null;
+
+          // Check the "monthly other" amount box
+          if (form.otherMonthlyAmount.value !== '') {
+              var otherMonthlyAmount = form.otherMonthlyAmount.value;
+              otherMonthlyAmount = otherMonthlyAmount.replace(/[,.](d)$/, ':$10');
+              otherMonthlyAmount = otherMonthlyAmount.replace(/[,.](d)(d)$/, ':$1$2');
+              otherMonthlyAmount = otherMonthlyAmount.replace(/[$£€¥,.]/g, '');
+              otherMonthlyAmount = otherMonthlyAmount.replace(/:/, '.');
+              amount = otherMonthlyAmount;
+          }
+
+          amount = parseFloat(amount);
+
+          if ( isNaN(amount) ) {
+              return 0;
+          } else {
+              var totalMonthlyAmountFormatted = frb.formatCurrency(currency, amount, language);
+              $('.frb-monthly-total').text(totalMonthlyAmountFormatted);
+
+              return amount;
+          }
+      };
+
+      frb.validateMonthlyAmount = function() {
+          var amount = frb.getMonthlyAmount();
+          var currency  = frb.getCurrency( mw.centralNotice.data.country );
+          var minAmount = frb.amounts.minimums[ currency ];
+          if ( amount === null || isNaN(amount) || amount <= 0 || amount < minAmount ) {
+              $('.frb-error-smallamount').show();
+              return false;
+          } else if ( amount > 10000 * minAmount ) {
+              $('.frb-error-bigamount').show();
+              return false;
+          } else {
+              $('.frb-error-smallamount, .frb-error-bigamount').hide();
+              return true;
+          }
+      };
 
       frb.submitMonthlyForm = function(options, isEndowment) {
 
@@ -2509,7 +2554,7 @@ $(function() {
 });
 
 
-/* Module: Upsell on: Wed Jul 24 2019 19:08:27 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 19:38:33 GMT-0500 (Central Daylight Time) */
 
 // Event: Go back to Step 1
 $('body').on('click', '.close-optin', function(e) {
@@ -2623,7 +2668,7 @@ $(document).on('click', '#continue-btn', function(e) {
     }
 });
 
-/* Module: Upsell on: Wed Jul 24 2019 19:08:27 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 19:38:33 GMT-0500 (Central Daylight Time) */
 
 
 </script>
