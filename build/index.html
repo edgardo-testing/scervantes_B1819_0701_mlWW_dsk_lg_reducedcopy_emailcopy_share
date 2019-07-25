@@ -1,5 +1,5 @@
 <!-- Large desktop banner. Must be used with "Large banner limit and switch" mixin --><html><head>
- <!-- CREATED AT: Thu Jul 25 2019 17:04:24 GMT+0000 (UTC) -->
+ <!-- CREATED AT: Thu Jul 25 2019 17:06:58 GMT+0000 (UTC) -->
 
 <style>
 /* Hide when editing */
@@ -1601,7 +1601,7 @@ button.frb-submit.active:hover {
 /* End 80% viewport height*/
 
 
-/* Module: Upsell on: Thu Jul 25 2019 17:04:12 GMT+0000 (UTC) */
+/* Module: Upsell on: Thu Jul 25 2019 17:06:58 GMT+0000 (UTC) */
 
 .frb-submit {
     width: 100%;
@@ -1708,116 +1708,6 @@ button.frb-submit.active:hover {
 }
 
 /* Module: Upsell */
-    
-
-
-
-/* Module: Shaking effect height on: Thu Jul 25 2019 17:04:18 GMT+0000 (UTC) */
-.shake {
-    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
-    transform: translate3d(0, 0, 0);
-}
-
-/* Keyframes shake moz */
-@-moz-keyframes shake {
-    10%, 90% {
-        -moz-transform: translate3d(-1px, 0, 0);
-    }
-
-    20%, 80% {
-        -moz-transform: translate3d(2px, 0, 0);
-    }
-
-    30%, 50%, 70% {
-        -moz-transform: translate3d(-4px, 0, 0);
-    }
-
-    40%, 60% {
-        -moz-transform: translate3d(4px, 0, 0);
-    }
-}
-
-/* Keyframes shake webkit */
-@-webkit-keyframes shake {
-    10%, 90% {
-        -webkit-transform: translate3d(-1px, 0, 0);
-    }
-
-    20%, 80% {
-        -webkit-transform: translate3d(2px, 0, 0);
-    }
-
-    30%, 50%, 70% {
-        -webkit-transform: translate3d(-4px, 0, 0);
-    }
-
-    40%, 60% {
-        -webkit-transform: translate3d(4px, 0, 0);
-    }
-}
-
-/* Keyframes shake moz */
-@keyframes shake {
-    10%,
-    90% {
-        transform: translate3d(-1px, 0, 0);
-    }
-    20%,
-    80% {
-        transform: translate3d(2px, 0, 0);
-    }
-    30%,
-    50%,
-    70% {
-        transform: translate3d(-4px, 0, 0);
-    }
-    40%,
-    60% {
-        transform: translate3d(4px, 0, 0);
-    }
-}
-
-/* Module: Shaking effect */
-    
-
-
-
-/* Module: Viewport height on: Thu Jul 25 2019 17:04:24 GMT+0000 (UTC)*/
-@media (max-width: 1400px) and (max-height: 800px) {
-    .frb-form .frb-methods {
-        margin-top: 5px;
-    }
-}
-
-@media (max-width: 1400px) and (max-height: 800px) {
-    .frb-footer {
-        font-size: 12px;
-    }
-}
-
-@media (max-width: 1400px) and (max-height: 800px) {
-    button.frb-submit {
-        height: 45px;
-    }
-}
-
-@media (max-width: 1400px) and (max-height: 800px) {
-    .frb-label {
-        height: 45px;
-    }
-}
-
-@media (max-width: 1400px) and (max-height: 800px) {
-    .frb {
-        margin-bottom: 5px;
-    }
-}
-
-@media (max-width: 1400px) and (max-height: 800px) {
-    .frb-message { font-size: 15px; }
-    html[lang="en"] .frb-message { font-size: 15px; }
-}
-/* Module: Viewport height */
     
 
 </style>
@@ -2126,9 +2016,8 @@ button.frb-submit.active:hover {
 
 <script>
 
-    // // // {# 'upsell' #}
-// // // {# 'shakingEffect' #}
-// // // {# 'viewportHeight' #}
+    // {# 'upsell' #}
+// {# 'shakingEffect' #}
     
 
 var frb = frb || {};
@@ -2238,7 +2127,7 @@ frb.rml = {
 
 
 
-      /* Module: Upsell on: Thu Jul 25 2019 17:04:12 GMT+0000 (UTC) */
+      /* Module: Upsell on: Thu Jul 25 2019 17:06:58 GMT+0000 (UTC) */
 
       frb.submitMonthlyForm = function (options, isEndowment) {
 
@@ -2330,38 +2219,10 @@ frb.rml = {
           }
 
       };
-      /* Module: Upsell on: Thu Jul 25 2019 17:04:12 GMT+0000 (UTC) */
+      /* Module: Upsell on: Thu Jul 25 2019 17:06:58 GMT+0000 (UTC) */
     
 
 $(function() {
-	
-    // DOM event of shaking effect: Handle .frb-submit of first step
-    $('#continue-btn').on('click', function() {
-      // Amounts validation
-      if (!frb.validateAmount() ) {
-        $('.frb-amounts').addClass('shake');
-        setTimeout(function() {
-            $('.frb-amounts').removeClass('shake');
-        }, 1000);
-      }
-
-      // Optin validation
-      if($('.frb-error-optin').is(':visible')) {
-        $('.frb-optin').addClass('shake');
-        setTimeout(function() {
-            $('.frb-optin').removeClass('shake');
-        }, 1000);
-      }
-
-      // Methods validation
-      if ($('input[name="frb-methods"]:checked').length !== 1) {
-        $('.frb-methods').addClass('shake');
-        setTimeout(function() {
-            $('.frb-methods').removeClass('shake');
-        }, 1000);
-      }
-    })
-    
     var language = mw.centralNotice.data.uselang;
     var country  = mw.centralNotice.data.country;
     var currency = frb.getCurrency(country);
@@ -2395,7 +2256,7 @@ $(function() {
 
     
 
-      /* Module: Upsell on: Thu Jul 25 2019 17:04:12 GMT+0000 (UTC) */
+      /* Module: Upsell on: Thu Jul 25 2019 17:06:58 GMT+0000 (UTC) */
       $('.frb-amounts').on('input change', function(e) {
         var target = $(e.target);
         if ( target.attr('id') !== 'input_amount_other' ) {
@@ -2467,7 +2328,7 @@ $(function() {
 
     
 
-      /* Module: Upsell on: Thu Jul 25 2019 17:04:12 GMT+0000 (UTC) */
+      /* Module: Upsell on: Thu Jul 25 2019 17:06:58 GMT+0000 (UTC) */
       frb.activateCTA = function () {
           console.log('frb.activateCTA')
           console.log(validAmount)
@@ -2522,7 +2383,7 @@ $(function() {
       };
 
       
-      /* Module: Upsell on: Thu Jul 25 2019 17:04:12 GMT+0000 (UTC) */
+      /* Module: Upsell on: Thu Jul 25 2019 17:06:58 GMT+0000 (UTC) */
 
       // Event: Go back to Step 1
       $('body').on('click', '.close-optin', function(e) {
@@ -2707,7 +2568,7 @@ $(function() {
           }
       });
 
-      /* Module: Upsell on: Thu Jul 25 2019 17:04:12 GMT+0000 (UTC) */
+      /* Module: Upsell on: Thu Jul 25 2019 17:06:58 GMT+0000 (UTC) */
     
     
 
