@@ -1881,7 +1881,7 @@ frb.hide = function() {
 };
 
 frb.toggleMonthly = function( monthly ) {
-    if( monthly.type === 'checkbox' ){
+    if ( monthly.type === 'checkbox' ){
         monthly = monthly.checked;
     }
     if ( monthly ) {
@@ -2012,7 +2012,6 @@ $(function() {
                 validAmount = 0;
             }
         }
-        console.log('valid amount frb-amounts' + validAmount)
         
         frb.updateFeeDisplay();
         frb.activateCTA();
