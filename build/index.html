@@ -1,5 +1,5 @@
 <!-- Large desktop banner. Must be used with "Large banner limit and switch" mixin --><html><head>
- <!-- CREATED AT: Wed Jul 24 2019 19:54:18 GMT-0500 (Central Daylight Time) -->
+ <!-- CREATED AT: Wed Jul 24 2019 19:58:24 GMT-0500 (Central Daylight Time) -->
 
 <style>
 /* Hide when editing */
@@ -1601,7 +1601,7 @@ button.frb-submit.active:hover {
 /* End 80% viewport height*/
 
 
-/* Module: Upsell on: Wed Jul 24 2019 19:54:18 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 19:58:24 GMT-0500 (Central Daylight Time) */
 
 /* STEP 2 */
 .frb--minimized, .frb-step2 { display: none; }
@@ -2512,7 +2512,7 @@ frb.activateCTA = function() {
 });
 
 
-/* Module: Upsell on: Wed Jul 24 2019 19:54:18 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 19:58:24 GMT-0500 (Central Daylight Time) */
 
 // Event: Go back to Step 1
 $('body').on('click', '.close-optin', function(e) {
@@ -2626,7 +2626,72 @@ $(document).on('click', '#continue-btn', function(e) {
     }
 });
 
-/* Module: Upsell on: Wed Jul 24 2019 19:54:18 GMT-0500 (Central Daylight Time) */
+// Function: updateUpsellAsk
+frb.updateUpsellAsk = function() {
+    var form = document.getElementById('frb-form');
+    var amount, upsellAmount;
+
+    if (form.otherMonthlyAmount.value !== '') {
+        upsellAmount = form.otherMonthlyAmount.value;
+    } else {
+        amount = frb.getAmount(form);
+        feeAmount = frb.calculateFee(amount);
+        if ( $('#frb-ptf-checkbox').prop('checked') ) {
+            totalAmount = amount + feeAmount;
+        } else {
+          totalAmount = amount;
+        }
+
+        if (totalAmount <= 5 ) {
+            upsellAmount = 2.75;
+        }
+        else if (totalAmount <= 10 ) {
+            upsellAmount = 3;
+        }
+        else if (totalAmount <= 20 ) {
+            upsellAmount = 5;
+        }
+        else if (totalAmount <= 30 ) {
+            upsellAmount = 7;
+        }
+        else if (totalAmount <= 50 ) {
+            upsellAmount = 9;
+        }
+        else if (totalAmount <= 100 ) {
+            upsellAmount = 11;
+        }
+        else if (totalAmount <= 250 ) {
+            upsellAmount = 25;
+        }
+        else if (totalAmount <= 500 ) {
+            upsellAmount = 50;
+        }
+        else {
+            upsellAmount = 100;
+        }
+
+        //update other monthly input
+        form.otherMonthlyAmount.value = upsellAmount;
+    }
+
+    var upsellAmountFormatted = frb.formatCurrency(currency, upsellAmount, language);
+    $('.frb-upsell-ask').text(upsellAmountFormatted);
+};
+
+// Event: Update the method on step 2 when a method is clicked in step 1.
+$('body').on('click', '.frb-button[data-name]', function(){
+    $('.frb-selected-method').text($(this).attr('data-name'));
+});
+
+$('body').on('click', '[name="monthly"]', function(){
+    if( $(this).prop('checked') ) {
+        frb.toggleMonthly(true);
+    } else {
+        frb.toggleMonthly(false);
+    }
+});
+
+/* Module: Upsell on: Wed Jul 24 2019 19:58:24 GMT-0500 (Central Daylight Time) */
 
 
 </script>
