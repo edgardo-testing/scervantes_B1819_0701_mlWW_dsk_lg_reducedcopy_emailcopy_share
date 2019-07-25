@@ -1,5 +1,5 @@
 <!-- Large desktop banner. Must be used with "Large banner limit and switch" mixin --><html><head>
- <!-- CREATED AT: Wed Jul 24 2019 19:01:02 GMT-0500 (Central Daylight Time) -->
+ <!-- CREATED AT: Wed Jul 24 2019 19:05:26 GMT-0500 (Central Daylight Time) -->
 
 <style>
 /* Hide when editing */
@@ -1601,7 +1601,7 @@ button.frb-submit.active:hover {
 /* End 80% viewport height*/
 
 
-/* Module: Upsell on: Wed Jul 24 2019 19:01:01 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 19:05:26 GMT-0500 (Central Daylight Time) */
 
 /* STEP 2 */
 .frb--minimized, .frb-step2 { display: none; }
@@ -2102,6 +2102,48 @@ frb.rml = {
 
 
 
+frb.getMonthlyAmount = function() {
+    var form = document.getElementById('frb-form');
+    var amount = null;
+
+    // Check the "monthly other" amount box
+    if (form.otherMonthlyAmount.value !== '') {
+        var otherMonthlyAmount = form.otherMonthlyAmount.value;
+        otherMonthlyAmount = otherMonthlyAmount.replace(/[,.](d)$/, ':$10');
+        otherMonthlyAmount = otherMonthlyAmount.replace(/[,.](d)(d)$/, ':$1$2');
+        otherMonthlyAmount = otherMonthlyAmount.replace(/[$£€¥,.]/g, '');
+        otherMonthlyAmount = otherMonthlyAmount.replace(/:/, '.');
+        amount = otherMonthlyAmount;
+    }
+
+    amount = parseFloat(amount);
+
+    if ( isNaN(amount) ) {
+        return 0;
+    } else {
+        var totalMonthlyAmountFormatted = frb.formatCurrency(currency, amount, language);
+        $('.frb-monthly-total').text(totalMonthlyAmountFormatted);
+
+        return amount;
+    }
+};
+
+frb.validateMonthlyAmount = function() {
+    var amount = frb.getMonthlyAmount();
+    var currency  = frb.getCurrency( mw.centralNotice.data.country );
+    var minAmount = frb.amounts.minimums[ currency ];
+    if ( amount === null || isNaN(amount) || amount <= 0 || amount < minAmount ) {
+        $('.frb-error-smallamount').show();
+        return false;
+    } else if ( amount > 10000 * minAmount ) {
+        $('.frb-error-bigamount').show();
+        return false;
+    } else {
+        $('.frb-error-smallamount, .frb-error-bigamount').hide();
+        return true;
+    }
+};
+
 frb.submitMonthlyForm = function(options, isEndowment) {
 
     var uri = new mw.Uri('https://payments.wikimedia.org/index.php/Special:GatewayFormChooser');
@@ -2331,55 +2373,9 @@ $(function() {
         offsetTop = (agent.indexOf('Chrome') > -1 || agent.indexOf('Firefox') > -1 || agent.indexOf('MSIE') > -1) ? offsetTop : offsetTop + bannerOuterHeight;
         offsetTop = (agent.indexOf('Edge') > -1) ? offsetTop + bannerOuterHeight : offsetTop;
 
-        $('body, html').animate({ scrollTop: offsetTop }, 100, function() {
-            onLoad = false;
-        });
+        $('body, html').animate({ scrollTop: offsetTop }, 100, functi
 
-    } else {
-        onLoad = false;
-    }
-
-    $(window).on('resize', function() {
-        bannerOuterHeight = $('.frb').outerHeight( true );
-        stickyHeaderTop = bannerOuterHeight + $('.frb').offset().top + 200;
-    });
-
-    function minimizeScrollFunction() {
-        if( $(window).scrollTop() > stickyHeaderTop ) {
-
-            $('.frb-prevent-page-jump').css({
-                'height'  : bannerOuterHeight + 'px'
-            });
-            if (!onLoad) {
-                // No onload, show jump
-                $('.frb-prevent-page-jump').show();
-            }
-
-            $('.frb').addClass('frb--minimized');
-            $('.frb').removeClass('frb--in-article');
-        } else {
-            $('.frb').addClass('frb--in-article');
-            $('.frb-prevent-page-jump').css('display', 'none');
-            $('.frb').removeClass('frb--minimized frb-rml-displayed');
-        }
-    }
-
-    var scrollPos;
-    frb.clicked = false;
-    $(window).on('load scroll resize', function() {
-        scrollPos = $(window).scrollTop();
-
-        // Keep frb minimized until clicked or the user scrolls to the top of the page.
-        if ( frb.clicked === false ) {
-            minimizeScrollFunction();
-        }
-        // Restore default state
-        if ( scrollPos === 0 ) {
-            $('.frb').addClass('frb--in-article');
-            $('.frb').removeClass('frb--minimized frb--fixed frb-rml-displayed');
-          
-
-/* Module: Upsell on: Wed Jul 24 2019 19:01:01 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 19:05:26 GMT-0500 (Central Daylight Time) */
 
 // Event: Go back to Step 1
 $('body').on('click', '.close-optin', function(e) {
@@ -2447,7 +2443,7 @@ $('#frb-monthly-donate-no').on('click keypress', function(e) {
 });
 
 // Event: Donate monthly
-$('#donate-monthly').on('click keypress', function(e) {
+$(document).on('click keypress', '#donate-monthly', function(e) {
     if(e.which === 13 || e.type === 'click') {
         e.stopPropagation();
         frb.submitMonthlyForm(frb.storedOptions);
@@ -2493,10 +2489,56 @@ $(document).on('click', '#continue-btn', function(e) {
     }
 });
 
-/* Module: Upsell on: Wed Jul 24 2019 19:01:01 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 19:05:26 GMT-0500 (Central Daylight Time) */
 
 
-  $('.frb-prevent-page-jump').css('display', 'none');
+on() {
+            onLoad = false;
+        });
+
+    } else {
+        onLoad = false;
+    }
+
+    $(window).on('resize', function() {
+        bannerOuterHeight = $('.frb').outerHeight( true );
+        stickyHeaderTop = bannerOuterHeight + $('.frb').offset().top + 200;
+    });
+
+    function minimizeScrollFunction() {
+        if( $(window).scrollTop() > stickyHeaderTop ) {
+
+            $('.frb-prevent-page-jump').css({
+                'height'  : bannerOuterHeight + 'px'
+            });
+            if (!onLoad) {
+                // No onload, show jump
+                $('.frb-prevent-page-jump').show();
+            }
+
+            $('.frb').addClass('frb--minimized');
+            $('.frb').removeClass('frb--in-article');
+        } else {
+            $('.frb').addClass('frb--in-article');
+            $('.frb-prevent-page-jump').css('display', 'none');
+            $('.frb').removeClass('frb--minimized frb-rml-displayed');
+        }
+    }
+
+    var scrollPos;
+    frb.clicked = false;
+    $(window).on('load scroll resize', function() {
+        scrollPos = $(window).scrollTop();
+
+        // Keep frb minimized until clicked or the user scrolls to the top of the page.
+        if ( frb.clicked === false ) {
+            minimizeScrollFunction();
+        }
+        // Restore default state
+        if ( scrollPos === 0 ) {
+            $('.frb').addClass('frb--in-article');
+            $('.frb').removeClass('frb--minimized frb--fixed frb-rml-displayed');
+            $('.frb-prevent-page-jump').css('display', 'none');
             frb.clicked = false;
         }
     });
