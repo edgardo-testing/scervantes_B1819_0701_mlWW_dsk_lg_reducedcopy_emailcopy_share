@@ -1,5 +1,5 @@
 <!-- Large desktop banner. Must be used with "Large banner limit and switch" mixin --><html><head>
- <!-- CREATED AT: Wed Jul 24 2019 19:58:24 GMT-0500 (Central Daylight Time) -->
+ <!-- CREATED AT: Thu Jul 25 2019 05:23:34 GMT-0500 (Central Daylight Time) -->
 
 <style>
 /* Hide when editing */
@@ -1601,7 +1601,30 @@ button.frb-submit.active:hover {
 /* End 80% viewport height*/
 
 
-/* Module: Upsell on: Wed Jul 24 2019 19:58:24 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Thu Jul 25 2019 05:23:34 GMT-0500 (Central Daylight Time) */
+
+.frb-submit {
+    width: 100%;
+    display: block;
+    margin-top: 8px;
+    padding: 16px 2px;
+    background-color: #36c;
+    color: #FFF;
+    cursor: pointer;
+    border-color: #36c;
+    border-radius: 2px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1;
+    transition: background 100ms, color 100ms, border-color 100ms, box-shadow 100ms;
+}
+
+.frb-submit.inactive {
+    background-color: #f8f9fa;
+    color: #36c;
+    cursor: pointer;
+    bborder: 1px solid #a2a9b1;
+}
 
 /* STEP 2 */
 .frb--minimized, .frb-step2 { display: none; }
@@ -1938,7 +1961,7 @@ button.frb-submit.active:hover {
       </div>
       <div class="frb-error frb-error-smallamount">{{int:Donate_interface-smallamount-error}}</div>
       <div class="frb-error frb-error-bigamount">{{int:Donate_interface-bigamount-error}}</div>
-      <button id="donate-monthly" class="frb-submit" onclick="return false;">
+      <button id="donate-monthly" class="frb-submit inactive" onclick="return false;">
           <span class="frb-submit-secure-transaction">
               <svg class="frb-icon frb-icon-lock" role="img" aria-labelledby="frb-icon-lock-title" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title id="frb-icon-lock-title">{{int:Centralnotice-FR2015_translations-secure-transaction}}</title><path d="M16.07 8H15V5s0-5-5-5-5 5-5 5v3H3.93A1.93 1.93 0 0 0 2 9.93v8.15A1.93 1.93 0 0 0 3.93 20h12.14A1.93 1.93 0 0 0 18 18.07V9.93A1.93 1.93 0 0 0 16.07 8zM10 16a2 2 0 1 1 2-2 2 2 0 0 1-2 2zm3-8H7V5.5C7 4 7 2 10 2s3 2 3 3.5z"/></svg>
           </span>
@@ -2101,97 +2124,97 @@ frb.rml = {
 
 
 
-      frb.submitMonthlyForm = function (options, isEndowment) {
+frb.submitMonthlyForm = function (options, isEndowment) {
 
-        var uri = new mw.Uri('https://payments.wikimedia.org/index.php/Special:GatewayFormChooser');
-        var params = {};
+    var uri = new mw.Uri('https://payments.wikimedia.org/index.php/Special:GatewayFormChooser');
+    var params = {};
 
-        /* Form selection data */
-        params.payment_method = options.method;
-        if (options.submethod) {
-            params.payment_submethod = options.submethod;
-        }
-        if (options.gateway) {
-            params.gateway = options.gateway;
-        }
-        if (options.ffname) {
-            params.ffname = options.ffname;
-        }
-        if (options.variant) {
-            params.variant = options.variant;
-        }
-        params.recurring = frb.getRecurring();
+    /* Form selection data */
+    params.payment_method = options.method;
+    if (options.submethod) {
+        params.payment_submethod = options.submethod;
+    }
+    if (options.gateway) {
+        params.gateway = options.gateway;
+    }
+    if (options.ffname) {
+        params.ffname = options.ffname;
+    }
+    if (options.variant) {
+        params.variant = options.variant;
+    }
+    params.recurring = frb.getRecurring();
 
-        params.currency_code = frb.getCurrency(mw.centralNotice.data.country) || 'USD';
+    params.currency_code = frb.getCurrency(mw.centralNotice.data.country) || 'USD';
 
-        params.uselang = mw.centralNotice.data.uselang || 'en';
-        params.country = mw.centralNotice.data.country || 'XX';
+    params.uselang = mw.centralNotice.data.uselang || 'en';
+    params.country = mw.centralNotice.data.country || 'XX';
 
-        if (params.uselang === 'pt' && params.country === 'BR') {
-            params.uselang = 'pt-br';
-        }
-        if (params.uselang === 'es' &&
-            (params.country === 'AR' || params.country === 'CL' ||
-                params.country === 'CO' || params.country === 'MX' ||
-                params.country === 'PE' || params.country === 'UY')
-        ) {
-            params.uselang = 'es-419';
-        }
+    if (params.uselang === 'pt' && params.country === 'BR') {
+        params.uselang = 'pt-br';
+    }
+    if (params.uselang === 'es' &&
+        (params.country === 'AR' || params.country === 'CL' ||
+            params.country === 'CO' || params.country === 'MX' ||
+            params.country === 'PE' || params.country === 'UY')
+    ) {
+        params.uselang = 'es-419';
+    }
 
-        /* Adyen override. frb.ccAdyenCountries is defined in LocalizeJS-2017.js */
-        if (params.payment_method === 'cc' && frb.ccAdyenCountries.indexOf(params.country) !== -1) {
-            params.gateway = 'adyen';
-        }
+    /* Adyen override. frb.ccAdyenCountries is defined in LocalizeJS-2017.js */
+    if (params.payment_method === 'cc' && frb.ccAdyenCountries.indexOf(params.country) !== -1) {
+        params.gateway = 'adyen';
+    }
 
-        /* Amount */
-        var amount = frb.getMonthlyAmount();
-        if ($('#frb-ptf-checkbox').prop('checked')) {
-            frb.extraData.ptf = 1;
-        }
-        params.amount = amount;
+    /* Amount */
+    var amount = frb.getMonthlyAmount();
+    if ($('#frb-ptf-checkbox').prop('checked')) {
+        frb.extraData.ptf = 1;
+    }
+    params.amount = amount;
 
-        /* Email optin */
-        if ($('input[name="opt_in"]').length > 0) {
-            var opt_inValue = $('input[name="opt_in"]:checked').val();
-            params.opt_in = opt_inValue; // frb.validateForm() already checked it's 1 or 0
-            params.variant = 'emailExplain'; // Show message about receipt on cc form
-        }
+    /* Email optin */
+    if ($('input[name="opt_in"]').length > 0) {
+        var opt_inValue = $('input[name="opt_in"]:checked').val();
+        params.opt_in = opt_inValue; // frb.validateForm() already checked it's 1 or 0
+        params.variant = 'emailExplain'; // Show message about receipt on cc form
+    }
 
-        /* Tracking info */
-        if (isEndowment) {
-            params.utm_medium = 'endowment';
-        } else {
-            params.utm_medium = 'sitenotice';
-        }
-        params.utm_campaign = mw.centralNotice.data.campaign || 'test';
-        params.utm_source = frb.buildUtmSource(params);
+    /* Tracking info */
+    if (isEndowment) {
+        params.utm_medium = 'endowment';
+    } else {
+        params.utm_medium = 'sitenotice';
+    }
+    params.utm_campaign = mw.centralNotice.data.campaign || 'test';
+    params.utm_source = frb.buildUtmSource(params);
 
-        frb.extraData.vw = window.innerWidth;
-        frb.extraData.vh = window.innerHeight;
-        frb.extraData.time = Math.round((Date.now() - frb.loadedTime) / 1000);
+    frb.extraData.vw = window.innerWidth;
+    frb.extraData.vh = window.innerHeight;
+    frb.extraData.time = Math.round((Date.now() - frb.loadedTime) / 1000);
 
-        if (!$.isEmptyObject(frb.extraData)) {
-            params.utm_key = frb.buildUtmKey(frb.extraData);
-        }
+    if (!$.isEmptyObject(frb.extraData)) {
+        params.utm_key = frb.buildUtmKey(frb.extraData);
+    }
 
-        /* Link to Banner History if enabled */
-        var mixins = mw.centralNotice.getDataProperty('mixins');
-        if (mixins && mixins.bannerHistoryLogger) {
-            params.bannerhistlog = mw.centralNotice.bannerHistoryLogger.id;
-        }
+    /* Link to Banner History if enabled */
+    var mixins = mw.centralNotice.getDataProperty('mixins');
+    if (mixins && mixins.bannerHistoryLogger) {
+        params.bannerhistlog = mw.centralNotice.bannerHistoryLogger.id;
+    }
 
-        uri.extend(params);
+    uri.extend(params);
 
-        if (mixins && mixins.bannerHistoryLogger) {
-            mw.centralNotice.bannerHistoryLogger.ensureLogSent().always(function () {
-                window.location.href = uri.toString();
-            });
-        } else {
+    if (mixins && mixins.bannerHistoryLogger) {
+        mw.centralNotice.bannerHistoryLogger.ensureLogSent().always(function () {
             window.location.href = uri.toString();
-        }
+        });
+    } else {
+        window.location.href = uri.toString();
+    }
 
-    };
-    
+};
+
 
 $(function() {
     var language = mw.centralNotice.data.uselang;
@@ -2292,56 +2315,58 @@ $(function() {
 
     
 
-      frb.getMonthlyAmount = function() {
-          var form = document.getElementById('frb-form');
-          var amount = null;
 
-          // Check the "monthly other" amount box
-          if (form.otherMonthlyAmount.value !== '') {
-              var otherMonthlyAmount = form.otherMonthlyAmount.value;
-              otherMonthlyAmount = otherMonthlyAmount.replace(/[,.](d)$/, ':$10');
-              otherMonthlyAmount = otherMonthlyAmount.replace(/[,.](d)(d)$/, ':$1$2');
-              otherMonthlyAmount = otherMonthlyAmount.replace(/[$£€¥,.]/g, '');
-              otherMonthlyAmount = otherMonthlyAmount.replace(/:/, '.');
-              amount = otherMonthlyAmount;
-          }
+frb.getMonthlyAmount = function() {
+    var form = document.getElementById('frb-form');
+    var amount = null;
 
-          amount = parseFloat(amount);
+    // Check the "monthly other" amount box
+    if (form.otherMonthlyAmount.value !== '') {
+        var otherMonthlyAmount = form.otherMonthlyAmount.value;
+        otherMonthlyAmount = otherMonthlyAmount.replace(/[,.](d)$/, ':$10');
+        otherMonthlyAmount = otherMonthlyAmount.replace(/[,.](d)(d)$/, ':$1$2');
+        otherMonthlyAmount = otherMonthlyAmount.replace(/[$£€¥,.]/g, '');
+        otherMonthlyAmount = otherMonthlyAmount.replace(/:/, '.');
+        amount = otherMonthlyAmount;
+    }
 
-          if ( isNaN(amount) ) {
-              return 0;
-          } else {
-              var totalMonthlyAmountFormatted = frb.formatCurrency(currency, amount, language);
-              $('.frb-monthly-total').text(totalMonthlyAmountFormatted);
+    amount = parseFloat(amount);
 
-              return amount;
-          }
-      };
+    if ( isNaN(amount) ) {
+        return 0;
+    } else {
+        var totalMonthlyAmountFormatted = frb.formatCurrency(currency, amount, language);
+        $('.frb-monthly-total').text(totalMonthlyAmountFormatted);
 
-      frb.validateMonthlyAmount = function() {
-          var amount = frb.getMonthlyAmount();
-          var currency  = frb.getCurrency( mw.centralNotice.data.country );
-          var minAmount = frb.amounts.minimums[ currency ];
-          if ( amount === null || isNaN(amount) || amount <= 0 || amount < minAmount ) {
-              $('.frb-error-smallamount').show();
-              return false;
-          } else if ( amount > 10000 * minAmount ) {
-              $('.frb-error-bigamount').show();
-              return false;
-          } else {
-              $('.frb-error-smallamount, .frb-error-bigamount').hide();
-              return true;
-          }
-      };
-      
+        return amount;
+    }
+};
 
-frb.activateCTA = function() {
-        if ( validAmount && validMethod ) {
-            $('.frb-submit').addClass('active');
-        } else {
-            $('.frb-submit').removeClass('active');
-        }
-    };
+frb.validateMonthlyAmount = function() {
+    var amount = frb.getMonthlyAmount();
+    var currency  = frb.getCurrency( mw.centralNotice.data.country );
+    var minAmount = frb.amounts.minimums[ currency ];
+    if ( amount === null || isNaN(amount) || amount <= 0 || amount < minAmount ) {
+        $('.frb-error-smallamount').show();
+        return false;
+    } else if ( amount > 10000 * minAmount ) {
+        $('.frb-error-bigamount').show();
+        return false;
+    } else {
+        $('.frb-error-smallamount, .frb-error-bigamount').hide();
+        return true;
+    }
+};
+
+
+frb.activateCTA = function () {
+    if (validAmount && validStayInTouch) {
+        $('.frb-submit').addClass('active');
+    } else {
+        $('.frb-submit:not(#continue-btn)').removeClass('active');
+    }
+};
+
 
     /* --- Nag/minimized banner functionality --- */
 
@@ -2512,7 +2537,7 @@ frb.activateCTA = function() {
 });
 
 
-/* Module: Upsell on: Wed Jul 24 2019 19:58:24 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Thu Jul 25 2019 05:23:34 GMT-0500 (Central Daylight Time) */
 
 // Event: Go back to Step 1
 $('body').on('click', '.close-optin', function(e) {
@@ -2583,7 +2608,9 @@ $(document).on('click keypress', '#frb-monthly-donate-no', function(e) {
 $(document).on('click keypress', '#donate-monthly', function(e) {
     if(e.which === 13 || e.type === 'click') {
         e.stopPropagation();
-        frb.submitMonthlyForm(frb.storedOptions);
+        if (frb.validateMonthlyAmount()) {
+            frb.submitMonthlyForm(frb.storedOptions);
+        }
     }
 });
 
@@ -2691,7 +2718,7 @@ $('body').on('click', '[name="monthly"]', function(){
     }
 });
 
-/* Module: Upsell on: Wed Jul 24 2019 19:58:24 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Thu Jul 25 2019 05:23:34 GMT-0500 (Central Daylight Time) */
 
 
 </script>
