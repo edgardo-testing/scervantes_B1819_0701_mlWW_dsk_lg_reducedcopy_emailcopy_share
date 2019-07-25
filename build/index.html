@@ -1,6 +1,6 @@
 <!-- Large desktop banner. Must be used with "Large banner limit and switch" mixin -->
 
- <!-- CREATED AT: Thu Jul 25 2019 12:40:40 GMT-0500 (Central Daylight Time) -->
+ <!-- CREATED AT: Thu Jul 25 2019 17:41:53 GMT+0000 (UTC) -->
 
 <style>
 /* Hide when editing */
@@ -1600,76 +1600,6 @@ button.frb-submit.active:hover {
     html[lang="en"] .frb-message { font-size: 15px; }
 }
 /* End 80% viewport height*/
-
-
-/* Module: Shaking effect height on: Thu Jul 25 2019 12:40:40 GMT-0500 (Central Daylight Time) */
-.shake {
-    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
-    transform: translate3d(0, 0, 0);
-}
-
-/* Keyframes shake moz */
-@-moz-keyframes shake {
-    10%, 90% {
-        -moz-transform: translate3d(-1px, 0, 0);
-    }
-
-    20%, 80% {
-        -moz-transform: translate3d(2px, 0, 0);
-    }
-
-    30%, 50%, 70% {
-        -moz-transform: translate3d(-4px, 0, 0);
-    }
-
-    40%, 60% {
-        -moz-transform: translate3d(4px, 0, 0);
-    }
-}
-
-/* Keyframes shake webkit */
-@-webkit-keyframes shake {
-    10%, 90% {
-        -webkit-transform: translate3d(-1px, 0, 0);
-    }
-
-    20%, 80% {
-        -webkit-transform: translate3d(2px, 0, 0);
-    }
-
-    30%, 50%, 70% {
-        -webkit-transform: translate3d(-4px, 0, 0);
-    }
-
-    40%, 60% {
-        -webkit-transform: translate3d(4px, 0, 0);
-    }
-}
-
-/* Keyframes shake moz */
-@keyframes shake {
-    10%,
-    90% {
-        transform: translate3d(-1px, 0, 0);
-    }
-    20%,
-    80% {
-        transform: translate3d(2px, 0, 0);
-    }
-    30%,
-    50%,
-    70% {
-        transform: translate3d(-4px, 0, 0);
-    }
-    40%,
-    60% {
-        transform: translate3d(4px, 0, 0);
-    }
-}
-
-/* Module: Shaking effect */
-    
-
 </style>
 
 <div class="frb-prevent-page-jump"></div>
@@ -1934,10 +1864,7 @@ button.frb-submit.active:hover {
 
 </div>
 
-<script>
-
-// {# 'shakingEffect' #}
-    
+<script>    
 
 var frb = frb || {};
 
@@ -2045,34 +1972,6 @@ frb.rml = {
 {{MediaWiki:FR2014/Resources/alterImpressionData.js}}
 
 $(function() {
-	
-    // DOM event of shaking effect: Handle .frb-submit of first step
-    $('#undefined').on('click', function() {
-      // Amounts validation
-      if (!frb.validateAmount() ) {
-        $('.frb-amounts').addClass('shake');
-        setTimeout(function() {
-            $('.frb-amounts').removeClass('shake');
-        }, 1000);
-      }
-
-      // Optin validation
-      if($('.frb-error-optin').is(':visible')) {
-        $('.frb-optin').addClass('shake');
-        setTimeout(function() {
-            $('.frb-optin').removeClass('shake');
-        }, 1000);
-      }
-
-      // Methods validation
-      if ($('input[name="frb-methods"]:checked').length !== 1) {
-        $('.frb-methods').addClass('shake');
-        setTimeout(function() {
-            $('.frb-methods').removeClass('shake');
-        }, 1000);
-      }
-    })
-    
     var language = mw.centralNotice.data.uselang;
     var country  = mw.centralNotice.data.country;
     var currency = frb.getCurrency(country);
