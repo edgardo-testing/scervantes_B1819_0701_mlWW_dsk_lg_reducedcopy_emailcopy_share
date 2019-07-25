@@ -1,5 +1,5 @@
 <!-- Large desktop banner. Must be used with "Large banner limit and switch" mixin --><html><head>
- <!-- CREATED AT: Wed Jul 24 2019 18:59:32 GMT-0500 (Central Daylight Time) -->
+ <!-- CREATED AT: Wed Jul 24 2019 19:01:02 GMT-0500 (Central Daylight Time) -->
 
 <style>
 /* Hide when editing */
@@ -1601,7 +1601,7 @@ button.frb-submit.active:hover {
 /* End 80% viewport height*/
 
 
-/* Module: Upsell on: Wed Jul 24 2019 18:59:32 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 19:01:01 GMT-0500 (Central Daylight Time) */
 
 /* STEP 2 */
 .frb--minimized, .frb-step2 { display: none; }
@@ -2101,7 +2101,9 @@ frb.rml = {
 
 
 
+
 frb.submitMonthlyForm = function(options, isEndowment) {
+
     var uri = new mw.Uri('https://payments.wikimedia.org/index.php/Special:GatewayFormChooser');
     var params = {};
 
@@ -2188,7 +2190,9 @@ frb.submitMonthlyForm = function(options, isEndowment) {
     } else {
         window.location.href = uri.toString();
     }
+
 };
+
 
 $(function() {
     var language = mw.centralNotice.data.uselang;
@@ -2373,9 +2377,9 @@ $(function() {
         if ( scrollPos === 0 ) {
             $('.frb').addClass('frb--in-article');
             $('.frb').removeClass('frb--minimized frb--fixed frb-rml-displayed');
-            $(
+          
 
-/* Module: Upsell on: Wed Jul 24 2019 18:59:32 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 19:01:01 GMT-0500 (Central Daylight Time) */
 
 // Event: Go back to Step 1
 $('body').on('click', '.close-optin', function(e) {
@@ -2489,10 +2493,10 @@ $(document).on('click', '#continue-btn', function(e) {
     }
 });
 
-/* Module: Upsell on: Wed Jul 24 2019 18:59:32 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 19:01:01 GMT-0500 (Central Daylight Time) */
 
 
-'.frb-prevent-page-jump').css('display', 'none');
+  $('.frb-prevent-page-jump').css('display', 'none');
             frb.clicked = false;
         }
     });
