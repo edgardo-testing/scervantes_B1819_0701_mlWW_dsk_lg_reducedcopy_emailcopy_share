@@ -1,5 +1,5 @@
 <!-- Large desktop banner. Must be used with "Large banner limit and switch" mixin --><html><head>
- <!-- CREATED AT: Wed Jul 24 2019 19:07:01 GMT-0500 (Central Daylight Time) -->
+ <!-- CREATED AT: Wed Jul 24 2019 19:08:27 GMT-0500 (Central Daylight Time) -->
 
 <style>
 /* Hide when editing */
@@ -1601,7 +1601,7 @@ button.frb-submit.active:hover {
 /* End 80% viewport height*/
 
 
-/* Module: Upsell on: Wed Jul 24 2019 19:07:01 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 19:08:27 GMT-0500 (Central Daylight Time) */
 
 /* STEP 2 */
 .frb--minimized, .frb-step2 { display: none; }
@@ -2509,7 +2509,7 @@ $(function() {
 });
 
 
-/* Module: Upsell on: Wed Jul 24 2019 19:07:01 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 19:08:27 GMT-0500 (Central Daylight Time) */
 
 // Event: Go back to Step 1
 $('body').on('click', '.close-optin', function(e) {
@@ -2536,7 +2536,7 @@ $('body').on('click', '.close-optin2', function(e) {
 });
 
 // Event: Donate monthly other amount
-$('.frb-monthly-diff-amt-link').on('click keypress', function(e) {
+$(document).on('click keypress', '.frb-monthly-diff-amt-link', function(e) {
     if(e.which === 13 || e.type === 'click') {
         e.stopPropagation();
         document.getElementById('frb-form').otherMonthlyAmount.value = '';
@@ -2549,7 +2549,7 @@ $('.frb-monthly-diff-amt-link').on('click keypress', function(e) {
 });
 
 // Event: Validate monthly other amount
-$('#frb-amt-monthly-other-input').on('input change', function(e) {
+$(document).on('input change', '#frb-amt-monthly-other-input', function(e) {
     if ( frb.validateMonthlyAmount() ) {
         validAmount = 1;
         frb.updateUpsellAsk();
@@ -2560,7 +2560,7 @@ $('#frb-amt-monthly-other-input').on('input change', function(e) {
 });
 
 // Event: Monthly donate yes
-$('#frb-monthly-donate-yes').on('click keypress', function(e) {
+$(document).on('click keypress', '#frb-monthly-donate-yes', function(e) {
     if(e.which === 13 || e.type === 'click') {
         e.stopPropagation();
         frb.toggleMonthly(true);
@@ -2569,7 +2569,7 @@ $('#frb-monthly-donate-yes').on('click keypress', function(e) {
 });
 
 // Event: Monthly donate no
-$('#frb-monthly-donate-no').on('click keypress', function(e) {
+$(document).on('click keypress', '#frb-monthly-donate-no', function(e) {
     if(e.which === 13 || e.type === 'click') {
         e.stopPropagation();
         frb.submitForm(frb.storedOptions);
@@ -2623,7 +2623,7 @@ $(document).on('click', '#continue-btn', function(e) {
     }
 });
 
-/* Module: Upsell on: Wed Jul 24 2019 19:07:01 GMT-0500 (Central Daylight Time) */
+/* Module: Upsell on: Wed Jul 24 2019 19:08:27 GMT-0500 (Central Daylight Time) */
 
 
 </script>
